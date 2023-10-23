@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // Adjust the speed in the Inspector
     private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
@@ -27,20 +28,37 @@ public class PlayerMovement : MonoBehaviour
         /* - - - PHONE INPUTS FOR MOVEMENT - - - */
         // Get the phone's accelerometer input
         float moveXp = Input.acceleration.x;
-        float moveYp = Input.gyro.userAcceleration.z;
+        //float moveYp = Input.gyro.userAcceleration.z;
+
+        /* - - - ANIMATIONS - - - */
+        if (moveXp > 0)
+        {
+            animator.SetBool("der", true);
+            animator.SetBool("izq", false);
+        }
+        else if (moveXp < 0)
+        {
+            animator.SetBool("der", false);
+            animator.SetBool("izq", true);
+        }
+        else
+        {
+            animator.SetBool("der", false);
+            animator.SetBool("izq", false);
+        }
 
         // Calculate the movement vector
-        Vector3 moveDirectionP = new Vector3(moveXp, moveYp, 0).normalized;
+        Vector3 moveDirectionP = new Vector3(moveXp, 0, 0).normalized;
 
         // Get the phone's gyroscope rotation
-        Quaternion gyroRotation = Input.gyro.attitude;
-        gyroRotation = new Quaternion(gyroRotation.x, gyroRotation.y, -gyroRotation.z, -gyroRotation.w);
+        //Quaternion gyroRotation = Input.gyro.attitude;
+        //gyroRotation = new Quaternion(gyroRotation.x, gyroRotation.y, -gyroRotation.z, -gyroRotation.w);
 
         // Calculate the movement vector based on pitch (forward and backward tilt)
-        float pitch = gyroRotation.eulerAngles.x;
+        //float pitch = gyroRotation.eulerAngles.x;
 
         // Apply the vertical movement
-        Vector3 moveDirection2 = new Vector3(0, pitch, 0).normalized;
+        //Vector3 moveDirection2 = new Vector3(0, pitch, 0).normalized;
         //rb.AddForce(moveDirection2 * moveSpeed);
 
         // Apply the movement
