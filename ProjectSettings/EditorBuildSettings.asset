@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 4132bc5be8a0b8e4baaca84bb30e7b1b
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 16213db5a22481a469d8e98e1126c6ed
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 6af8fa707f675004790428e151cf9f1e, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: fc90440d7ae986149ab4305f2bd76b48, type: 2}

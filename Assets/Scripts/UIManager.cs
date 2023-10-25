@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     // UI data and variables
-    public int score;
+    private int score = 0;
 
     [SerializeField] private Slider energySlider;
 
@@ -27,5 +27,15 @@ public class UIManager : MonoBehaviour
     public void Updating()
     {
         energySlider.value = score;
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public void SetScore(int _score)
+    {
+        score += _score;
     }
 }

@@ -8,9 +8,9 @@ public class PlayerCollision : MonoBehaviour
     {
         Destroy(collision.gameObject);
         if (collision.tag == "Sun")
-            UIManager.Instance.score++;
-        else if (collision.tag == "Cloud" && UIManager.Instance.score > 0)
-            UIManager.Instance.score--;
+            UIManager.Instance.SetScore(1);
+        else if (collision.tag == "Cloud" && UIManager.Instance.GetScore() > 0)
+            UIManager.Instance.SetScore(-1);
 
         UIManager.Instance.Updating();
     }

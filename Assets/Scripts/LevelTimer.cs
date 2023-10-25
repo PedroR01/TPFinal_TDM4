@@ -7,7 +7,9 @@ public class LevelTimer : MonoBehaviour
     private void Update()
     {
         timer -= Time.deltaTime;
-        if (timer <= 0)
+        if (timer <= 0 && UIManager.Instance.GetScore() <= 0)
             GameManager.Instance.Loose();
+        else if (timer <= 0)
+            GameManager.Instance.NextLevel();
     }
 }

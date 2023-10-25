@@ -28,7 +28,8 @@ public class PlayerMovement : MonoBehaviour
         /* - - - PHONE INPUTS FOR MOVEMENT - - - */
         // Get the phone's accelerometer input
         float moveXp = Input.acceleration.x;
-        //float moveYp = Input.gyro.userAcceleration.z;
+        float moveYp = -Input.gyro.gravity.z;
+        Debug.Log("Gyro: " + Input.gyro.gravity.z);
 
         /* - - - ANIMATIONS - - - */
         if (moveXp > 0)
@@ -48,18 +49,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Calculate the movement vector
-        Vector3 moveDirectionP = new Vector3(moveXp, 0, 0).normalized;
-
-        // Get the phone's gyroscope rotation
-        //Quaternion gyroRotation = Input.gyro.attitude;
-        //gyroRotation = new Quaternion(gyroRotation.x, gyroRotation.y, -gyroRotation.z, -gyroRotation.w);
-
-        // Calculate the movement vector based on pitch (forward and backward tilt)
-        //float pitch = gyroRotation.eulerAngles.x;
-
-        // Apply the vertical movement
-        //Vector3 moveDirection2 = new Vector3(0, pitch, 0).normalized;
-        //rb.AddForce(moveDirection2 * moveSpeed);
+        Vector3 moveDirectionP = new Vector3(moveXp, moveYp, 0).normalized;
 
         // Apply the movement
         rb.AddForce(moveDirectionP * moveSpeed);
