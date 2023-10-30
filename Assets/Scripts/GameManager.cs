@@ -33,7 +33,10 @@ public class GameManager : MonoBehaviour
         // Store the score of the current level
         scores[SceneManager.GetActiveScene().buildIndex - 2] = UIManager.Instance.GetScore();
         // Re-set the score for the next level
-        UIManager.Instance.SetScore(0);
+        UIManager.Instance.SetScore(-UIManager.Instance.GetScore());
+        // Change UI score bar
+        if (SceneManager.GetActiveScene().buildIndex > 1 && SceneManager.GetActiveScene().buildIndex < 5)
+            UIManager.Instance.ChangeScoreUI(SceneManager.GetActiveScene().buildIndex - 2);
         // Loads the next scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }

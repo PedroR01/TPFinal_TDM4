@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Positive
   - Negative
+  - Compost
+  - Trash
   layers:
   - Default
   - TransparentFX

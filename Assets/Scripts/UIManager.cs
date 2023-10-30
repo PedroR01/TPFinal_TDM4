@@ -9,10 +9,12 @@ public class UIManager : MonoBehaviour
     // UI data and variables
     private int score = 0;
 
+    [SerializeField] private GameObject[] scoreUI;
     [SerializeField] private Slider energySlider;
     [SerializeField] private Image energyFace;
     [SerializeField] private Sprite[] facesLvl1;
     [SerializeField] private Sprite[] facesLvl2;
+    [SerializeField] private Sprite[] compostLvl3;
 
     private void Awake()
     {
@@ -29,9 +31,10 @@ public class UIManager : MonoBehaviour
 
     public void Updating()
     {
-        energySlider.value = score;
         if (GameManager.Instance.GetLevel() == 1)
         {
+            energySlider.value = score;
+
             if (score >= 8)
                 energyFace.sprite = facesLvl1[3];
             else if (score >= 5)
@@ -54,6 +57,17 @@ public class UIManager : MonoBehaviour
             else
                 energyFace.sprite = facesLvl2[0];
         }
+        else if (GameManager.Instance.GetLevel() == 3)
+        {
+            if (score >= 8)
+                energyFace.sprite = compostLvl3[3];
+            else if (score >= 5)
+                energyFace.sprite = compostLvl3[2];
+            else if (score >= 2)
+                energyFace.sprite = compostLvl3[1];
+            else
+                energyFace.sprite = compostLvl3[0];
+        }
     }
 
     public int GetScore()
@@ -64,5 +78,27 @@ public class UIManager : MonoBehaviour
     public void SetScore(int _score)
     {
         score += _score;
+    }
+
+    public void ChangeScoreUI(int whichUI)
+    {
+        if (whichUI == 0)
+        {
+            scoreUI[0].SetActive(true);
+            scoreUI[1].SetActive(false);
+            scoreUI[2].SetActive(false);
+        }
+        else if (whichUI == 1)
+        {
+            scoreUI[0].SetActive(false);
+            scoreUI[1].SetActive(true);
+            scoreUI[2].SetActive(false);
+        }
+        else if (whichUI == 2)
+        {
+            scoreUI[0].SetActive(false);
+            scoreUI[1].SetActive(false);
+            scoreUI[2].SetActive(true);
+        }
     }
 }

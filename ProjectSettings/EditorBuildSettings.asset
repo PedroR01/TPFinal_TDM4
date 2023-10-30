@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level3.unity
     guid: 83ee784661a56f54e901503036a9fc91
+  - enabled: 1
+    path: Assets/Scenes/Resume.unity
+    guid: f2d9223dc4b9627448b9dabc5147c70e
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 6af8fa707f675004790428e151cf9f1e, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: fc90440d7ae986149ab4305f2bd76b48, type: 2}
