@@ -6,8 +6,11 @@ public class GameManager : MonoBehaviour
     // Singleton instance
     public static GameManager Instance;
 
+    private int[] scores;
+
     private void Awake()
     {
+        scores = new int[3];
         if (Instance == null)
         {
             Instance = this;
@@ -20,13 +23,23 @@ public class GameManager : MonoBehaviour
     // Add methods to update and retrieve UI data as needed
     public void Loose()
     {
-        // When you loose, load the roadmap scene again. (TO FIX: keep the score that you have before the loosing attempt and loose 1 life).
-        SceneManager.LoadScene(1);
+        // When you loose, re-load the level to try again. (TO ADD: loose 1 life).
+        UIManager.Instance.SetScore(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void NextLevel()
     {
+        // Store the score of the current level
+        scores[SceneManager.GetActiveScene().buildIndex - 2] = UIManager.Instance.GetScore();
+        // Re-set the score for the next level
+        UIManager.Instance.SetScore(0);
         // Loads the next scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public int GetLevel()
+    {
+        return SceneManager.GetActiveScene().buildIndex - 1; // Substract 1 because of the build index that has main menu and roadmap as lvl 0 and 1.
     }
 }

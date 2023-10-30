@@ -27,7 +27,7 @@ public class Collectables : MonoBehaviour
         Vector3 spawnPosition = new Vector3(randomX, transform.position.y, 0);
 
         // Randomly choose to spawn a sun or a cloud
-        GameObject spritePrefab = Random.value < 0.5f ? sunPrefab : cloudPrefab;
+        GameObject spritePrefab = Random.value < 0.65f ? sunPrefab : cloudPrefab;
 
         GameObject sprite = Instantiate(spritePrefab, spawnPosition, Quaternion.identity);
 
