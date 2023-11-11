@@ -31,28 +31,26 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-
         // Store the score of the current level
         //scores[SceneManager.GetActiveScene().buildIndex - 1] = UIManager.Instance.GetScore();
 
-
         //int index = SceneManager.GetActiveScene().buildIndex-1;
 
-        if (SceneManager.GetActiveScene().buildIndex == 3 )
+        if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             scores[0] = UIManager.Instance.GetScore();
             Debug.Log("Score:" + scores[0]);
-        }else if (SceneManager.GetActiveScene().buildIndex == 4)
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             scores[1] = UIManager.Instance.GetScore();
             Debug.Log("Score:" + scores[1]);
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 5)
+        else if (SceneManager.GetActiveScene().buildIndex == 4)
         {
             scores[2] = UIManager.Instance.GetScore();
             Debug.Log("Score:" + scores[2]);
         }
-
 
         // Re-set the score for the next level
         UIManager.Instance.SetScore(-UIManager.Instance.GetScore());
