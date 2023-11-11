@@ -23,6 +23,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Resume.unity
     guid: f2d9223dc4b9627448b9dabc5147c70e
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 5c4d71b1bf57086449bf47f18393e79e
+  - enabled: 1
+    path: Assets/Scenes/Level01.unity
+    guid: 6b91f9c25602a914198d075f68df1fae
+  - enabled: 0
+    path: Assets/Scenes/Level02.unity
+    guid: 34920ec89d1d9eb40a9f3c7bf50c074b
+  - enabled: 0
+    path: Assets/Scenes/Level03.unity
+    guid: b48abe59a47216b40a8cc4fd1756c295
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 6af8fa707f675004790428e151cf9f1e, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: fc90440d7ae986149ab4305f2bd76b48, type: 2}

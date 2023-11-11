@@ -8,73 +8,65 @@ public class Lvl3_Controller : MonoBehaviour
     [SerializeField] private GameObject[] items;
     private int index = 0;
     private bool confirm = false;
+    private float lastConfirmationTime;
 
     private void Start()
     {
         Input.gyro.enabled = true;
-    }
+        lastConfirmationTime = Time.time;
+     }
 
     private void Update()
     {
-        if (!items[index].activeInHierarchy)
-            items[index].SetActive(true);
-
-        // Si no separaba en estos 2 grandes condicionales, habia un error en un bucle y hacia que el index se sume hasta irse por afuera del array
-        if (items[index].transform.position.x < 1 && items[index].transform.position.x > -1)
-            MoveItem();
+        if (index == 9)
+            GameManager.Instance.NextLevel();
         else
         {
             MoveItem();
             ConfirmItem();
-            if (items[index].transform.position.x >= 1f && items[index].tag == "Compost" || items[index].transform.position.x <= -1f && items[index].tag == "Trash")
-            {
-                sunFlower.sprite = sunFlowerFaces[1];
-                if (confirm)
-                {
-                    UIManager.Instance.SetScore(-1);
-                    items[index].gameObject.SetActive(false);
-                    index++;
-                    confirm = false;
-                }
-            }
-            else
-            {
-                sunFlower.sprite = sunFlowerFaces[0];
-                if (confirm)
-                {
-                    UIManager.Instance.SetScore(1);
-                    items[index].gameObject.SetActive(false);
-                    index++;
-                    confirm = false;
-                }
-            }
-        }
 
-        if (index > 8)
-            GameManager.Instance.NextLevel();
+            if (index!=9 && !items[index].activeInHierarchy) items[index].SetActive(true);
+
+            UIManager.Instance.Updating();
+            confirm = false;
+        }
     }
 
     private void MoveItem()
     {
-        // Movimiento de acelerometro para un lado o para otro
-        float move = Input.gyro.rotationRateUnbiased.y; // - para la izq | + para la der
+        // Movimiento de acelerómetro para un lado u otro
+        float move = Input.acceleration.x; // - para la izquierda | + para la derecha
 
-        if (move >= 1.5f)
-        {
-            items[index].transform.position = new Vector3(1.1f, items[index].transform.position.y, items[index].transform.position.z);
-        }
-        else if (move <= -1.5f)
-        {
-            items[index].transform.position = new Vector3(-0.7f, items[index].transform.position.y, items[index].transform.position.z);
-        }
+        if (move >= 0.1f)
+            items[index].transform.position = new Vector3(1.3f, items[index].transform.position.y, items[index].transform.position.z);
+        else
+            items[index].transform.position = new Vector3(-0.5f, items[index].transform.position.y, items[index].transform.position.z);
     }
 
     private void ConfirmItem()
     {
-        // Velocidad de giroscopio para confirmar
-        float confirmation = -Input.gyro.rotationRateUnbiased.x; // para confirmar
+        float confirmation = Input.gyro.rotationRateUnbiased.x; // para confirmar
 
-        if (confirmation >= 7)
-            confirm = true;
+        if (confirmation > 7 && Time.time - lastConfirmationTime >= 1f)
+        {
+           
+            if ((items[index].transform.position.x > 1f && items[index].tag == "Compost") ||
+                    (items[index].transform.position.x < 1f && items[index].tag == "Trash"))
+            {
+                sunFlower.sprite = sunFlowerFaces[1];
+                UIManager.Instance.SetScore(-1);
+               //Debug.Log("Score:" + UIManager.Instance.GetScore());
+            }
+            else if (items[index].transform.position.x < 1f && items[index].tag == "Compost")
+            {
+                sunFlower.sprite = sunFlowerFaces[0];
+                UIManager.Instance.SetScore(1);
+                //Debug.Log("Score:" + UIManager.Instance.GetScore());
+            }
+
+            items[index].SetActive(false);
+            index++;
+            lastConfirmationTime = Time.time; // Actualizar el tiempo de la última confirmación
+        }
     }
 }

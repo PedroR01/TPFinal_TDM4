@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject[] scoreUI;
     [SerializeField] private Slider energySlider;
     [SerializeField] private Image energyFace;
+    [SerializeField] private Image energyFace2;
+    [SerializeField] private Image energyFace3;
     [SerializeField] private Sprite[] facesLvl1;
     [SerializeField] private Sprite[] facesLvl2;
     [SerializeField] private Sprite[] compostLvl3;
@@ -47,26 +49,35 @@ public class UIManager : MonoBehaviour
         else if (GameManager.Instance.GetLevel() == 2)
         {
             if (score >= 9)
-                energyFace.sprite = facesLvl2[4];
+                energyFace2.sprite = facesLvl2[4];
             else if (score >= 6)
-                energyFace.sprite = facesLvl2[3];
+                energyFace2.sprite = facesLvl2[3];
             else if (score >= 4)
-                energyFace.sprite = facesLvl2[2];
+                energyFace2.sprite = facesLvl2[2];
             else if (score >= 2)
-                energyFace.sprite = facesLvl2[1];
+                energyFace2.sprite = facesLvl2[1];
             else
-                energyFace.sprite = facesLvl2[0];
+                energyFace2.sprite = facesLvl2[0];
         }
         else if (GameManager.Instance.GetLevel() == 3)
         {
-            if (score >= 8)
-                energyFace.sprite = compostLvl3[3];
-            else if (score >= 5)
-                energyFace.sprite = compostLvl3[2];
-            else if (score >= 2)
-                energyFace.sprite = compostLvl3[1];
+
+            if (score == 7)
+                energyFace3.sprite = compostLvl3[7];
+            else if (score == 6)
+                energyFace3.sprite = compostLvl3[6];
+            else if (score == 5)
+                energyFace3.sprite = compostLvl3[5];
+            else if (score == 4)
+                energyFace3.sprite = compostLvl3[4];
+            else if (score == 3)
+                energyFace3.sprite = compostLvl3[3];
+            else if (score == 2)
+                energyFace3.sprite = compostLvl3[2];
+            else if (score == 1)
+                energyFace3.sprite = compostLvl3[1];
             else
-                energyFace.sprite = compostLvl3[0];
+                energyFace3.sprite = compostLvl3[0];
         }
     }
 
@@ -99,6 +110,12 @@ public class UIManager : MonoBehaviour
             scoreUI[0].SetActive(false);
             scoreUI[1].SetActive(false);
             scoreUI[2].SetActive(true);
+        }
+        else if (whichUI == 3)
+        {
+            scoreUI[0].SetActive(false);
+            scoreUI[1].SetActive(false);
+            scoreUI[2].SetActive(false);
         }
     }
 }

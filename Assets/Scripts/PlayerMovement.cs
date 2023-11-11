@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
         /* - - - PHONE INPUTS FOR MOVEMENT - - - */
         // Get the phone's accelerometer input
         float moveXp = Input.acceleration.x;
-        float moveYp = -Input.gyro.gravity.z;
+        float moveYp = Input.acceleration.y;
 
         /* - - - ANIMATIONS - - - */
         if (currentLvl == 1)
@@ -41,14 +41,21 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("der", false);
                 animator.SetBool("izq", false);
             }
+            // Calculate the movement vector
+            Vector3 moveDirectionP = new Vector3(moveXp, 0, 0);
+            if (useGyro)
+                moveDirectionP = new Vector3(moveXp, moveYp, 0);
+
+            // Apply the movement
+            rb.AddForce(moveDirectionP * moveSpeed);
+        }
+        else if (currentLvl == 2)
+        {
+            Vector3 moveDirection = new Vector3(moveXp, moveYp, 0);
+            if (useGyro)
+                moveDirection = new Vector3(moveXp, moveYp, 0); 
+            rb.AddForce(moveDirection * moveSpeed);
         }
 
-        // Calculate the movement vector
-        Vector3 moveDirectionP = new Vector3(moveXp, 0, 0);
-        if (useGyro)
-            moveDirectionP = new Vector3(moveXp, moveYp, 0);
-
-        // Apply the movement
-        rb.AddForce(moveDirectionP * moveSpeed);
     }
 }
