@@ -2015,7 +2015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be93571507432f4bbbcba5b23444316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 25
+  timer: 10
 --- !u!4 &1778311424
 Transform:
   m_ObjectHideFlags: 0

@@ -60,7 +60,12 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 4)
             UIManager.Instance.ChangeScoreUI(3);
         // Loads the next scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+            SceneManager.LoadScene(8);
+        else if (SceneManager.GetActiveScene().buildIndex == 3)
+            SceneManager.LoadScene(9);
+        else
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public int GetScore(int i)

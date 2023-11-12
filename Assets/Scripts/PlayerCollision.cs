@@ -12,11 +12,13 @@ public class PlayerCollision : MonoBehaviour
     {
         currentLvl = GameManager.Instance.GetLevel();
         //luz.enabled = false;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(collision.gameObject);
+
 
         if (collision.tag == "Positive")
         {

@@ -10,7 +10,8 @@ public class Load_Scene : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 7)
             UIManager.Instance.ChangeScoreUI(0);
-        // Load the scene by name
+
+       // Load the scene by name
         SceneManager.LoadScene(sceneIndexToLoad);
     }
 }
