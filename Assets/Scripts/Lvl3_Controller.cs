@@ -50,7 +50,6 @@ public class Lvl3_Controller : MonoBehaviour
             sunFlower.sprite = sunFlowerFaces[1];
         else
             sunFlower.sprite = sunFlowerFaces[0];
-
     }
 
     private void ConfirmItem()
@@ -59,18 +58,15 @@ public class Lvl3_Controller : MonoBehaviour
 
         if (confirmation > 7 && Time.time - lastConfirmationTime >= 1f)
         {
-
             if ((items[index].transform.position.x > 1f && items[index].tag == "Compost") ||
                     (items[index].transform.position.x < 1f && items[index].tag == "Trash"))
             {
-                if(UIManager.Instance.GetScore()>0)
+                if (UIManager.Instance.GetScore() > 0)
                     UIManager.Instance.SetScore(-1);
-                //Debug.Log("Score:" + UIManager.Instance.GetScore());
             }
             else if (items[index].transform.position.x < 1f && items[index].tag == "Compost")
             {
                 UIManager.Instance.SetScore(1);
-                //Debug.Log("Score:" + UIManager.Instance.GetScore());
             }
 
             items[index].SetActive(false);

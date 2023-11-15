@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -61,23 +62,40 @@ public class UIManager : MonoBehaviour
         }
         else if (GameManager.Instance.GetLevel() == 3)
         {
+            switch (score)
+            {
+                case 0:
+                    energyFace3.sprite = compostLvl3[0];
+                    break;
 
-            if (score == 7)
-                energyFace3.sprite = compostLvl3[7];
-            else if (score == 6)
-                energyFace3.sprite = compostLvl3[6];
-            else if (score == 5)
-                energyFace3.sprite = compostLvl3[5];
-            else if (score == 4)
-                energyFace3.sprite = compostLvl3[4];
-            else if (score == 3)
-                energyFace3.sprite = compostLvl3[3];
-            else if (score == 2)
-                energyFace3.sprite = compostLvl3[2];
-            else if (score == 1)
-                energyFace3.sprite = compostLvl3[1];
-            else
-                energyFace3.sprite = compostLvl3[0];
+                case 1:
+                    energyFace3.sprite = compostLvl3[1];
+                    break;
+
+                case 2:
+                    energyFace3.sprite = compostLvl3[2];
+                    break;
+
+                case 3:
+                    energyFace3.sprite = compostLvl3[3];
+                    break;
+
+                case 4:
+                    energyFace3.sprite = compostLvl3[4];
+                    break;
+
+                case 5:
+                    energyFace3.sprite = compostLvl3[5];
+                    break;
+
+                case 6:
+                    energyFace3.sprite = compostLvl3[6];
+                    break;
+
+                case 7:
+                    energyFace3.sprite = compostLvl3[7];
+                    break;
+            }
         }
     }
 
@@ -93,29 +111,31 @@ public class UIManager : MonoBehaviour
 
     public void ChangeScoreUI(int whichUI)
     {
-        if (whichUI == 0)
+        switch (whichUI)
         {
-            scoreUI[0].SetActive(true);
-            scoreUI[1].SetActive(false);
-            scoreUI[2].SetActive(false);
-        }
-        else if (whichUI == 1)
-        {
-            scoreUI[0].SetActive(false);
-            scoreUI[1].SetActive(true);
-            scoreUI[2].SetActive(false);
-        }
-        else if (whichUI == 2)
-        {
-            scoreUI[0].SetActive(false);
-            scoreUI[1].SetActive(false);
-            scoreUI[2].SetActive(true);
-        }
-        else if (whichUI == 3)
-        {
-            scoreUI[0].SetActive(false);
-            scoreUI[1].SetActive(false);
-            scoreUI[2].SetActive(false);
+            case 0:
+                scoreUI[0].SetActive(true);
+                scoreUI[1].SetActive(false);
+                scoreUI[2].SetActive(false);
+                break;
+
+            case 1:
+                scoreUI[0].SetActive(false);
+                scoreUI[1].SetActive(true);
+                scoreUI[2].SetActive(false);
+                break;
+
+            case 2:
+                scoreUI[0].SetActive(false);
+                scoreUI[1].SetActive(false);
+                scoreUI[2].SetActive(true);
+                break;
+
+            case 3:
+                scoreUI[0].SetActive(false);
+                scoreUI[1].SetActive(false);
+                scoreUI[2].SetActive(false);
+                break;
         }
     }
 }

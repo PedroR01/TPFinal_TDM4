@@ -12,7 +12,7 @@ Está aplicación fue creada por: <br>
 **Diseño**<br>
 - Cocozella, Malena<br>
 - Oss, Consuelo<br>
-- Pazcel, Joaquín<br>
+- Pazcel, Joaquín<br><br>
 **Programación** <br>
 - Robinet, Pedro Augusto<br>
 - Lopez, Marilin<br>
